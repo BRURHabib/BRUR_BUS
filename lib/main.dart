@@ -32,78 +32,92 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('🚌 BRUR BUS'),
-            actions: [
-              PopupMenuButton(
-                  itemBuilder: (BuildContext context) => [
-                        PopupMenuItem(
-                          child: Text('About University'),
-                          value: 1,
+        appBar: AppBar(
+          title: Text('🚌 BRUR BUS'),
+          actions: [
+            PopupMenuButton(
+                icon: Icon(Icons.menu),
+                itemBuilder: (BuildContext context) => [
+                      PopupMenuItem(
+                        child: Text('About University'),
+                        value: 1,
+                      ),
+                      PopupMenuItem(
+                        child: Text('About CSE Department'),
+                        value: 2,
+                      ),
+                      PopupMenuItem(
+                        child: Text('About App Developer'),
+                        value: 3,
+                      ),
+                    ],
+                onSelected: (value) {
+                  switch (value) {
+                    case 1:
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutBrur()),
+                      );
+                      break;
+                    case 2:
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AboutCseDept(),
                         ),
-                        PopupMenuItem(
-                          child: Text('About CSE Department'),
-                          value: 2,
-                        ),
-                        PopupMenuItem(
-                          child: Text('About App Developer'),
-                          value: 3,
-                        ),
-                      ],
-                  onSelected: (value) {
-                    switch (value) {
-                      case 1:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => AboutBrur()),
-                        );
-                        break;
-                      case 2:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AboutCseDept(),
-                          ),
-                        );
-                        break;
+                      );
+                      break;
 
-                      case 3:
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AboutAppDeveloper(),
-                          ),
-                        );
-                        break;
-                    }
-                  }),
+                    case 3:
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AboutAppDeveloper(),
+                        ),
+                      );
+                      break;
+                  }
+                }),
+          ],
+        ),
+        body: Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 7),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 102, 82),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  'ক্যাম্পাস থেকে বাস ছাড়ার সময়ঃ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                      color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                child: Text(
+                  'সকাল ৮.১০, সকাল ৯.১০, সকাল ১১.১০, দুপুর ১.৩০, দুপুর ৩.৩০, বিকেল ৫.১০, সন্ধ্যা ৭.১০(মেডিকেল মোড়)',
+                  style: TextStyle(fontSize: 15),
+                ),
+              ),
+              SizedBox(
+                height: 180,
+              ),
+              Container(
+                child: Center(
+                  child: Text('Bus Location'),
+                ),
+              ),
             ],
           ),
-          body: Column(
-            children: [
-              Text('Bus Route'),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text('Route No-01:'),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text('Route No-02:'),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text('Route No-03:'),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text('Route No-04:'),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text('Route No-05:'),
-              ),
-            ],
-          )),
+        ),
+      ),
     );
   }
 }
